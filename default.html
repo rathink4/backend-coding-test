@@ -52,7 +52,7 @@
 			</tr>
 			<tr ng-repeat="expense in expenses">
 				<td>{{expense.date | date:'dd MMM yyyy'}}</td>
-				<td>{{expense.amount | currency:"&pound;"}}</td>
+				<td>{{expense.amount_with_vat | currency:"&pound;"}}</td>
 				<td>{{expense.reason}}</td>
 			</tr>
 		</table>

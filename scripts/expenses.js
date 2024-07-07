@@ -1,5 +1,9 @@
 var expensesApp = angular.module("expensesApp", ["restangular", "ui.date"]);
 
+expensesApp.config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://localhost:8080'); // Set the base URL to your server's URL
+});
+
 expensesApp.controller("ExpensesCtrl", ["$scope", "Restangular", function ($scope, $Restangular) {
 	$scope.dateOptions = {
 		changeMonth: true,
@@ -17,7 +21,7 @@ expensesApp.controller("ExpensesCtrl", ["$scope", "Restangular", function ($scop
 	$scope.saveExpense = function() {
 		if ($scope.expensesform.$valid) {
 			// Post the expense via REST
-			$Restangular.one("expenses").post(null, $scope.newExpense).then(function() {
+			$Restangular.one("add-expense").post(null, $scope.newExpense).then(function() {
 				// Reload new expenses list
 				loadExpenses();
 			});
